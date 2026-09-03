@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zone-Based Jeepney Fare Calculator | Ilagan City</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page">
+
+  <header class="site-header">
+    <div class="logo">
+      <svg class="logo-icon" width="30" height="26" viewBox="0 0 48 40" aria-hidden="true">
+        <rect x="3" y="16" width="42" height="16" rx="3" fill="#17356b"/>
+        <path d="M8 16 L11 6 H37 L40 16 Z" fill="#17356b"/>
+        <rect x="14" y="9" width="7" height="7" fill="#eaf1fa"/>
+        <rect x="23" y="9" width="7" height="7" fill="#eaf1fa"/>
+        <circle cx="14" cy="33" r="4.5" fill="#17356b"/>
+        <circle cx="14" cy="33" r="1.8" fill="#eaf1fa"/>
+        <circle cx="36" cy="33" r="4.5" fill="#17356b"/>
+        <circle cx="36" cy="33" r="1.8" fill="#eaf1fa"/>
+      </svg>
+      <span class="logo-text">JEEPNEY <span class="accent">ZONE</span></span>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>Zone-Based Fare Calculator</h1>
+    <p class="subtitle">Official LTFRB-compliant zone fare calculation system for the <strong>Alibagu – Centro</strong> corridor</p>
+
+    <div class="route-banner">
+      <span class="banner-tag">STUDY ROUTE</span>
+      <span class="banner-title">Alibagu – Centro Corridor (Ilagan City)</span>
+    </div>
+
+    <form id="fare-form" novalidate>
+      <div class="zone-grid">
+        <div class="zone-field">
+          <label for="origin">Point A (Origin Zone)</label>
+          <div class="input-wrap">
+            <select id="origin" name="origin">
+              <option value="0">Zone A: Centro</option>
+              <option value="1">Zone B: Guinatan</option>
+              <option value="2">Zone C: Osmeña</option>
+              <option value="3">Zone D: Calamagui</option>
+              <option value="4">Zone E: Calamagui (2nd)</option>
+              <option value="5">Zone F: Baligatan / Alibagu</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="zone-field">
+          <label for="destination">Point B (Destination Zone)</label>
+          <div class="input-wrap">
+            <select id="destination" name="destination">
+              <option value="0">Zone A: Centro</option>
+              <option value="1" selected>Zone B: Guinatan</option>
+              <option value="2">Zone C: Osmeña</option>
+              <option value="3">Zone D: Calamagui</option>
+              <option value="4">Zone E: Calamagui (2nd)</option>
+              <option value="5">Zone F: Baligatan / Alibagu</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <label for="passenger-type">Passenger Classification</label>
+      <div class="input-wrap">
+        <select id="passenger-type" name="passenger-type">
+          <option value="regular">Regular</option>
+          <option value="student">Student (20% Discount)</option>
+          <option value="senior">Senior Citizen (20% Discount)</option>
+          <option value="pwd">PWD (Person with Disability - 20% Discount)</option>
+        </select>
+      </div>
+
+      <button type="submit" class="calc-btn">Calculate Zone Fare</button>
+    </form>
+
+    <div class="result" id="result" aria-live="polite">
+      <p class="result-label">Official Computed Fare</p>
+      <p class="result-amount" id="fare-amount">₱—</p>
+
+      <div class="zone-trip-summary" id="zone-trip-summary">
+        <div class="summary-badge"><span id="badge-point-a">Zone A</span> ➔ <span id="badge-point-b">Zone B</span></div>
+      </div>
+
+      <div class="result-details">
+        <div class="detail-row">
+          <span class="detail-key">Designated Corridor:</span>
+          <span class="detail-val">Alibagu – Centro Route</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Zone Movement:</span>
+          <span class="detail-val" id="detail-zones">—</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Distance Covered:</span>
+          <span class="detail-val" id="detail-distance">—</span>
+        </div>
+        <div class="detail-row">
+          <span class="detail-key">Passenger Type:</span>
+          <span class="detail-val" id="detail-passenger">—</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="disclaimer">*Calculated using official LTFRB Modernized PUJ zone fare rates to eliminate manual estimation error.</p>
+
+    <div class="info-section">
+      <h2>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor" stroke="none"/></svg>
+        About This Research Study
+      </h2>
+      <p class="study-item"><strong>Research Title:</strong> Development and Evaluation of a Web-Based Zone-Based Jeepney Fare Calculation System and Its Effect on Fare Computation Accuracy</p>
+      <p class="study-item"><strong>Institution:</strong> Casa Del Niño Montessori School of Ilagan, Inc., Guinatan, City of Ilagan, Isabela</p>
+      <p class="study-item"><strong>Researchers:</strong> Balido, John Ritz A., Lantin, Alexandra S., Lola, Samriti, Narciso, David Troy S.</p>
+      <p class="study-item"><strong>Research Adviser:</strong> Mrs. Juby An Ballesteros Clemente, LPT</p>
+    </div>
+  </main>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
