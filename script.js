@@ -1,59 +1,96 @@
 (function () {
   "use strict";
 
-  // Designated Travel Zones from the Research Paper (Paradigm, Page 3)
-  // Cross-referenced with LTFRB Modernized PUJ Fare Matrix (Case No. 2022-02-0031)
-  const DESIGNATED_ZONES = [
+  // Official LTFRB Landmarks and Distance Database (Centro - Alibagu Route)
+  // Aligned with the 6 Study Zones: Centro, Guinatan, Osmeña, Calamagui 1st, Calamagui 2nd, Baligatan, Alibagu
+  const LTFRB_LANDMARKS = [
     {
-      code: "Zone A",
-      name: "Centro",
-      landmarks: "Rizal Park, Ilagan City Hall, Paguirigan Memorial Park",
-      distance: 0.00,
-      regularFare: 14.00,
-      discountFare: 11.20
+      id: 0,
+      name: "Rizal Park",
+      zone: "Centro",
+      distanceKm: 0.00,
+      officialFare: { regular: 14.00, discount: 11.20 }
     },
     {
-      code: "Zone B",
-      name: "Guinatan",
-      landmarks: "Casa Del Niño Montessori School of Ilagan, Brgy. Guinatan Covered Court",
-      distance: 2.49,
-      regularFare: 14.00,
-      discountFare: 11.20
+      id: 1,
+      name: "Ilagan City Hall",
+      zone: "Centro",
+      distanceKm: 0.64,
+      officialFare: { regular: 14.00, discount: 11.20 }
     },
     {
-      code: "Zone C",
-      name: "Osmeña",
-      landmarks: "Puregold Ilagan Isabela, Robinsons Supermarket Ilagan",
-      distance: 3.95,
-      regularFare: 14.00,
-      discountFare: 11.20
+      id: 2,
+      name: "Paguirigan Memorial Park",
+      zone: "Centro",
+      distanceKm: 0.95,
+      officialFare: { regular: 14.00, discount: 11.20 }
     },
     {
-      code: "Zone D",
-      name: "Calamagui",
-      landmarks: "Isabela Doctor's General Hospital (IDGH), Hotel Mills and Rain",
-      distance: 6.22,
-      regularFare: 19.00,
-      discountFare: 15.00
+      id: 3,
+      name: "Casa del Niño Montessori School of Ilagan",
+      zone: "Guinatan",
+      distanceKm: 1.90,
+      officialFare: { regular: 14.00, discount: 11.20 }
     },
     {
-      code: "Zone E",
-      name: "Calamagui (2nd)",
-      landmarks: "Queen Isabela Park, Philippine Statistics Authority (PSA)",
-      distance: 7.31,
-      regularFare: 21.25,
-      discountFare: 17.00
+      id: 4,
+      name: "Brgy. Guinatan Covered Court",
+      zone: "Guinatan",
+      distanceKm: 2.49,
+      officialFare: { regular: 14.00, discount: 11.20 }
     },
     {
-      code: "Zone F",
-      name: "Baligatan / Alibagu",
-      landmarks: "Northstar Mall (Alibagu), Savemore Market City Mall",
-      distance: 8.10,
-      regularFare: 23.00,
-      discountFare: 18.50
+      id: 5,
+      name: "Puregold Ilagan Isabela",
+      zone: "Osmeña",
+      distanceKm: 3.30,
+      officialFare: { regular: 14.00, discount: 11.20 }
+    },
+    {
+      id: 6,
+      name: "Robinsons Supermarket Ilagan",
+      zone: "Osmeña",
+      distanceKm: 3.95,
+      officialFare: { regular: 14.00, discount: 11.20 }
+    },
+    {
+      id: 7,
+      name: "Isabela Doctor's General Hospital (IDGH)",
+      zone: "Calamagui 1st",
+      distanceKm: 5.30,
+      officialFare: { regular: 16.75, discount: 13.50 }
+    },
+    {
+      id: 8,
+      name: "Hotel Mills and Rain",
+      zone: "Calamagui 1st",
+      distanceKm: 6.22,
+      officialFare: { regular: 19.00, discount: 15.00 }
+    },
+    {
+      id: 9,
+      name: "Queen Isabela Park",
+      zone: "Calamagui 2nd",
+      distanceKm: 6.95,
+      officialFare: { regular: 20.50, discount: 16.50 }
+    },
+    {
+      id: 10,
+      name: "Philippine Statistics Authority - Isabela Provincial Office",
+      zone: "Baligatan",
+      distanceKm: 7.31,
+      officialFare: { regular: 21.25, discount: 17.00 }
+    },
+    {
+      id: 11,
+      name: "Northstar Mall",
+      zone: "Alibagu",
+      distanceKm: 8.10,
+      officialFare: { regular: 23.00, discount: 18.50 }
     }
   ];
 
+  // Mathematical Parameters from Official LTFRB Modern PUJ (Air-Con) Matrix
   const BASE_DISTANCE_KM = 4.0;
   const BASE_REGULAR_FARE = 14.00;
   const BASE_DISCOUNT_FARE = 11.20;
@@ -62,72 +99,118 @@
 
   const originSelect = document.getElementById("origin");
   const destSelect = document.getElementById("destination");
-  const passTypeSelect = document.getElementById("passenger-type");
+  const passengerRadios = document.querySelectorAll('input[name="passenger-type"]');
+  const labelRegular = document.getElementById("label-regular");
+  const labelDiscounted = document.getElementById("label-discounted");
+  const swapBtn = document.getElementById("swap-btn");
 
-  function roundFare(val) {
-    return Math.round(val * 4) / 4;
+  // Rounds to the nearest 0.25 (standard LTFRB quarter-peso rounding rule)
+  function roundToQuarter(value) {
+    return Math.round(value * 4) / 4;
+  }
+
+  function getSelectedPassengerType() {
+    const checked = document.querySelector('input[name="passenger-type"]:checked');
+    return checked ? checked.value : "regular";
+  }
+
+  function updatePassengerRadioStyles() {
+    const selectedType = getSelectedPassengerType();
+    if (selectedType === "discounted") {
+      labelDiscounted.classList.add("active");
+      labelRegular.classList.remove("active");
+    } else {
+      labelRegular.classList.add("active");
+      labelDiscounted.classList.remove("active");
+    }
+  }
+
+  function calculateFare(originPoint, destPoint, isDiscounted) {
+    // If one end of the trip is Rizal Park (0.00 km mark), match exact official matrix values
+    if (originPoint.id === 0 && destPoint.id !== 0) {
+      return isDiscounted ? destPoint.officialFare.discount : destPoint.officialFare.regular;
+    }
+    if (destPoint.id === 0 && originPoint.id !== 0) {
+      return isDiscounted ? originPoint.officialFare.discount : originPoint.officialFare.regular;
+    }
+
+    // Point-to-Point distance computation: |Origin_km - Dest_km|
+    const tripDistance = Math.abs(originPoint.distanceKm - destPoint.distanceKm);
+
+    if (tripDistance <= BASE_DISTANCE_KM) {
+      return isDiscounted ? BASE_DISCOUNT_FARE : BASE_REGULAR_FARE;
+    }
+
+    const excessKm = tripDistance - BASE_DISTANCE_KM;
+    if (isDiscounted) {
+      return roundToQuarter(BASE_DISCOUNT_FARE + (excessKm * PER_KM_DISCOUNT));
+    } else {
+      return roundToQuarter(BASE_REGULAR_FARE + (excessKm * PER_KM_REGULAR));
+    }
   }
 
   function computeAndRender() {
     const originIdx = parseInt(originSelect.value, 10);
     const destIdx = parseInt(destSelect.value, 10);
-    const passType = passTypeSelect.value;
+    const passType = getSelectedPassengerType();
+
+    updatePassengerRadioStyles();
 
     if (isNaN(originIdx) || isNaN(destIdx)) return;
 
-    const zoneA = DESIGNATED_ZONES[originIdx];
-    const zoneB = DESIGNATED_ZONES[destIdx];
+    const originPoint = LTFRB_LANDMARKS[originIdx];
+    const destPoint = LTFRB_LANDMARKS[destIdx];
+    const isDiscounted = (passType === "discounted");
 
-    const travelDistance = Math.abs(zoneB.distance - zoneA.distance);
-    const isDiscounted = (passType === "student" || passType === "senior" || passType === "pwd");
+    const travelDistance = Math.abs(originPoint.distanceKm - destPoint.distanceKm);
+    const computedFare = calculateFare(originPoint, destPoint, isDiscounted);
 
-    let computedFare = 0;
-
-    if (originIdx === 0 && destIdx !== 0) {
-      computedFare = isDiscounted ? zoneB.discountFare : zoneB.regularFare;
-    } else if (destIdx === 0 && originIdx !== 0) {
-      computedFare = isDiscounted ? zoneA.discountFare : zoneA.regularFare;
-    } else {
-      if (travelDistance <= BASE_DISTANCE_KM) {
-        computedFare = isDiscounted ? BASE_DISCOUNT_FARE : BASE_REGULAR_FARE;
-      } else {
-        const extraKm = travelDistance - BASE_DISTANCE_KM;
-        if (isDiscounted) {
-          computedFare = roundFare(BASE_DISCOUNT_FARE + (extraKm * PER_KM_DISCOUNT));
-        } else {
-          computedFare = roundFare(BASE_REGULAR_FARE + (extraKm * PER_KM_REGULAR));
-        }
-      }
-    }
-
+    // Update Output Elements
     document.getElementById("fare-amount").textContent = "₱" + computedFare.toFixed(2);
 
-    let passengerLabel = "Regular";
-    if (passType === "student") passengerLabel = "Student (20% Discount)";
-    else if (passType === "senior") passengerLabel = "Senior Citizen (20% Discount)";
-    else if (passType === "pwd") passengerLabel = "PWD (20% Discount)";
+    const passengerLabel = isDiscounted 
+      ? "Student / Senior Citizen / PWD (20% Statutory Discount)" 
+      : "Regular Passenger (Standard Fare)";
 
-    const zonesCrossed = Math.abs(destIdx - originIdx);
-    let zoneMovementText = "";
-    if (zonesCrossed === 0) {
-      zoneMovementText = `${zoneA.code} ➔ ${zoneB.code} (Same Zone Travel)`;
-    } else if (zonesCrossed === 1) {
-      zoneMovementText = `${zoneA.code} ➔ ${zoneB.code} (Adjacent Zone - 1 Zone Crossed)`;
+    // Update Summary Badges
+    document.getElementById("badge-point-a").textContent = `${originPoint.zone} (${originPoint.name})`;
+    document.getElementById("badge-point-b").textContent = `${destPoint.zone} (${destPoint.name})`;
+
+    // Update Detail Rows
+    document.getElementById("detail-point-a").textContent = `${originPoint.zone} – ${originPoint.name} (${originPoint.distanceKm.toFixed(2)} km mark)`;
+    document.getElementById("detail-point-b").textContent = `${destPoint.zone} – ${destPoint.name} (${destPoint.distanceKm.toFixed(2)} km mark)`;
+    
+    let distanceDetail = `${travelDistance.toFixed(2)} km `;
+    if (travelDistance === 0) {
+      distanceDetail += "(Same Boarding and Alighting Point)";
+    } else if (travelDistance <= BASE_DISTANCE_KM) {
+      distanceDetail += "(Within 4.0 km Base Fare Zone)";
     } else {
-      zoneMovementText = `${zoneA.code} ➔ ${zoneB.code} (Multi-Zone - ${zonesCrossed} Zones Crossed)`;
+      const excess = travelDistance - BASE_DISTANCE_KM;
+      distanceDetail += `(${excess.toFixed(2)} km beyond 4.0 km)`;
     }
 
-    document.getElementById("badge-point-a").textContent = `${zoneA.code}: ${zoneA.name}`;
-    document.getElementById("badge-point-b").textContent = `${zoneB.code}: ${zoneB.name}`;
-
-    document.getElementById("detail-zones").textContent = zoneMovementText;
-    document.getElementById("detail-distance").textContent = `${travelDistance.toFixed(2)} km (${travelDistance <= BASE_DISTANCE_KM ? "Within Base 4.0 km" : (travelDistance - BASE_DISTANCE_KM).toFixed(2) + " km beyond base"})`;
+    document.getElementById("detail-distance").textContent = distanceDetail;
     document.getElementById("detail-passenger").textContent = passengerLabel;
+  }
+
+  function swapLocations() {
+    const currentOrigin = originSelect.value;
+    originSelect.value = destSelect.value;
+    destSelect.value = currentOrigin;
+    computeAndRender();
   }
 
   originSelect.addEventListener("change", computeAndRender);
   destSelect.addEventListener("change", computeAndRender);
-  passTypeSelect.addEventListener("change", computeAndRender);
+
+  if (swapBtn) {
+    swapBtn.addEventListener("click", swapLocations);
+  }
+
+  passengerRadios.forEach(function (radio) {
+    radio.addEventListener("change", computeAndRender);
+  });
 
   document.getElementById("fare-form").addEventListener("submit", function (e) {
     e.preventDefault();
