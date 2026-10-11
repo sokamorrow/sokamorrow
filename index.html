@@ -26,157 +26,522 @@
     </div>
   </header>
 
+  <!-- Consistent Navigation Tabs -->
+  <nav class="nav-bar" role="tablist" aria-label="Main Navigation">
+    <button type="button" class="nav-tab active" role="tab" id="tab-calculator-btn" aria-selected="true" aria-controls="panel-calculator">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+      <span>Fare Calculator</span>
+    </button>
+    <button type="button" class="nav-tab" role="tab" id="tab-law-btn" aria-selected="false" aria-controls="panel-law">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      <span>Law</span>
+    </button>
+    <button type="button" class="nav-tab" role="tab" id="tab-matrix-btn" aria-selected="false" aria-controls="panel-matrix">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg>
+      <span>LTFRB Matrix</span>
+    </button>
+  </nav>
+
   <main class="container">
-    <h1>Modern Jeepney Fare Calculator</h1>
-    <p class="subtitle">An Automated Web-Based Fare Computation System for the <strong>Centro – Alibagu Route</strong> based on official LTFRB tariff formulas.</p>
 
-    <div class="route-banner">
-      <span class="banner-tag">STUDY CORRIDOR</span>
-      <span class="banner-title">Centro – Alibagu Route (City of Ilagan)</span>
-    </div>
+    <!-- TAB 1: Fare Calculator -->
+    <div id="panel-calculator" class="tab-panel active" role="tabpanel" aria-labelledby="tab-calculator-btn">
+      <h1>Modern Jeepney Fare Calculator</h1>
+      <p class="subtitle">An Automated Web-Based Fare Computation System for the <strong>Centro – Alibagu Route</strong> based on official LTFRB tariff formulas.</p>
 
-    <form id="fare-form" novalidate>
-      <div class="zone-grid">
-        
-        <!-- Origin Selection -->
-        <div class="zone-field">
-          <label for="origin">Point A: Origin (Zone / Landmark)</label>
-          <div class="input-wrap">
-            <select id="origin" name="origin">
-              <optgroup label="Centro Zone">
-                <option value="0" selected>Rizal Park (0.00 km mark)</option>
-                <option value="1">Ilagan City Hall (0.64 km mark)</option>
-                <option value="2">Paguirigan Memorial Park (0.95 km mark)</option>
-              </optgroup>
-              <optgroup label="Guinatan Zone">
-                <option value="3">Casa del Niño Montessori School (1.90 km mark)</option>
-                <option value="4">Brgy. Guinatan Covered Court (2.49 km mark)</option>
-              </optgroup>
-              <optgroup label="Osmeña Zone">
-                <option value="5">Puregold Ilagan Isabela (3.30 km mark)</option>
-                <option value="6">Robinsons Supermarket Ilagan (3.95 km mark)</option>
-              </optgroup>
-              <optgroup label="Calamagui 1st Zone">
-                <option value="7">Isabela Doctor's General Hospital [IDGH] (5.30 km mark)</option>
-                <option value="8">Hotel Mills and Rain (6.22 km mark)</option>
-              </optgroup>
-              <optgroup label="Calamagui 2nd Zone">
-                <option value="9">Queen Isabela Park (6.95 km mark)</option>
-              </optgroup>
-              <optgroup label="Baligatan Zone">
-                <option value="10">PSA - Isabela Provincial Office (7.31 km mark)</option>
-              </optgroup>
-              <optgroup label="Alibagu Zone">
-                <option value="11">Northstar Mall (8.10 km mark)</option>
-              </optgroup>
-            </select>
+      <div class="route-banner">
+        <span class="banner-tag">STUDY CORRIDOR</span>
+        <span class="banner-title">Centro – Alibagu Route (City of Ilagan)</span>
+      </div>
+
+      <form id="fare-form" novalidate>
+        <div class="zone-grid">
+          
+          <!-- Origin Selection -->
+          <div class="zone-field">
+            <label for="origin">Point A: Origin (Zone / Landmark)</label>
+            <div class="input-wrap">
+              <select id="origin" name="origin">
+                <optgroup label="Centro Zone">
+                  <option value="0" selected>Rizal Park (0.00 km mark)</option>
+                  <option value="1">Ilagan City Hall (0.64 km mark)</option>
+                  <option value="2">Paguirigan Memorial Park (0.95 km mark)</option>
+                </optgroup>
+                <optgroup label="Guinatan Zone">
+                  <option value="3">Casa del Niño Montessori School (1.90 km mark)</option>
+                  <option value="4">Brgy. Guinatan Covered Court (2.49 km mark)</option>
+                </optgroup>
+                <optgroup label="Osmeña Zone">
+                  <option value="5">Puregold Ilagan Isabela (3.30 km mark)</option>
+                  <option value="6">Robinsons Supermarket Ilagan (3.95 km mark)</option>
+                </optgroup>
+                <optgroup label="Calamagui 1st Zone">
+                  <option value="7">Isabela Doctor's General Hospital [IDGH] (5.30 km mark)</option>
+                  <option value="8">Hotel Mills and Rain (6.22 km mark)</option>
+                </optgroup>
+                <optgroup label="Calamagui 2nd Zone">
+                  <option value="9">Queen Isabela Park (6.95 km mark)</option>
+                </optgroup>
+                <optgroup label="Baligatan Zone">
+                  <option value="10">PSA - Isabela Provincial Office (7.31 km mark)</option>
+                </optgroup>
+                <optgroup label="Alibagu Zone">
+                  <option value="11">Northstar Mall (8.10 km mark)</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="swap-wrap">
+            <button type="button" id="swap-btn" class="swap-btn" title="Swap Origin and Destination" aria-label="Swap Origin and Destination">⇄</button>
+          </div>
+
+          <!-- Destination Selection -->
+          <div class="zone-field">
+            <label for="destination">Point B: Destination (Zone / Landmark)</label>
+            <div class="input-wrap">
+              <select id="destination" name="destination">
+                <optgroup label="Centro Zone">
+                  <option value="0">Rizal Park (0.00 km mark)</option>
+                  <option value="1">Ilagan City Hall (0.64 km mark)</option>
+                  <option value="2">Paguirigan Memorial Park (0.95 km mark)</option>
+                </optgroup>
+                <optgroup label="Guinatan Zone">
+                  <option value="3">Casa del Niño Montessori School (1.90 km mark)</option>
+                  <option value="4">Brgy. Guinatan Covered Court (2.49 km mark)</option>
+                </optgroup>
+                <optgroup label="Osmeña Zone">
+                  <option value="5">Puregold Ilagan Isabela (3.30 km mark)</option>
+                  <option value="6">Robinsons Supermarket Ilagan (3.95 km mark)</option>
+                </optgroup>
+                <optgroup label="Calamagui 1st Zone">
+                  <option value="7">Isabela Doctor's General Hospital [IDGH] (5.30 km mark)</option>
+                  <option value="8">Hotel Mills and Rain (6.22 km mark)</option>
+                </optgroup>
+                <optgroup label="Calamagui 2nd Zone">
+                  <option value="9">Queen Isabela Park (6.95 km mark)</option>
+                </optgroup>
+                <optgroup label="Baligatan Zone">
+                  <option value="10">PSA - Isabela Provincial Office (7.31 km mark)</option>
+                </optgroup>
+                <optgroup label="Alibagu Zone">
+                  <option value="11" selected>Northstar Mall (8.10 km mark)</option>
+                </optgroup>
+              </select>
+            </div>
           </div>
         </div>
 
-        <div class="swap-wrap">
-          <button type="button" id="swap-btn" class="swap-btn" title="Swap Origin and Destination" aria-label="Swap Origin and Destination">⇄</button>
+        <!-- Passenger Classification -->
+        <label class="passenger-section-label">Passenger Classification (Input Parameter)</label>
+        <div class="passenger-type-container">
+          <div class="passenger-btn-group" role="radiogroup" aria-label="Passenger Classification">
+            <label class="passenger-radio-label active" id="label-regular">
+              <input type="radio" name="passenger-type" value="regular" checked>
+              <span class="radio-title">Regular Passenger</span>
+              <span class="radio-desc">Standard Rate (₱17.00 first 4 km + ₱2.40/succeeding km)</span>
+            </label>
+            <label class="passenger-radio-label" id="label-discounted">
+              <input type="radio" name="passenger-type" value="discounted">
+              <span class="radio-title">Student / Senior Citizen / PWD</span>
+              <span class="radio-desc">20% Statutory Discount (₱13.50 first 4 km + ₱1.92/km)</span>
+            </label>
+          </div>
         </div>
 
-        <!-- Destination Selection -->
-        <div class="zone-field">
-          <label for="destination">Point B: Destination (Zone / Landmark)</label>
-          <div class="input-wrap">
-            <select id="destination" name="destination">
-              <optgroup label="Centro Zone">
-                <option value="0">Rizal Park (0.00 km mark)</option>
-                <option value="1">Ilagan City Hall (0.64 km mark)</option>
-                <option value="2">Paguirigan Memorial Park (0.95 km mark)</option>
-              </optgroup>
-              <optgroup label="Guinatan Zone">
-                <option value="3">Casa del Niño Montessori School (1.90 km mark)</option>
-                <option value="4">Brgy. Guinatan Covered Court (2.49 km mark)</option>
-              </optgroup>
-              <optgroup label="Osmeña Zone">
-                <option value="5">Puregold Ilagan Isabela (3.30 km mark)</option>
-                <option value="6">Robinsons Supermarket Ilagan (3.95 km mark)</option>
-              </optgroup>
-              <optgroup label="Calamagui 1st Zone">
-                <option value="7">Isabela Doctor's General Hospital [IDGH] (5.30 km mark)</option>
-                <option value="8">Hotel Mills and Rain (6.22 km mark)</option>
-              </optgroup>
-              <optgroup label="Calamagui 2nd Zone">
-                <option value="9">Queen Isabela Park (6.95 km mark)</option>
-              </optgroup>
-              <optgroup label="Baligatan Zone">
-                <option value="10">PSA - Isabela Provincial Office (7.31 km mark)</option>
-              </optgroup>
-              <optgroup label="Alibagu Zone">
-                <option value="11" selected>Northstar Mall (8.10 km mark)</option>
-              </optgroup>
-            </select>
+        <button type="submit" class="calc-btn">Compute Modern Jeepney Fare</button>
+      </form>
+
+      <!-- Computed Output Section -->
+      <div class="result" id="result" aria-live="polite">
+        <p class="result-label">Automated System Computed Fare</p>
+        <p class="result-amount" id="fare-amount">₱26.75</p>
+
+        <div class="zone-trip-summary" id="zone-trip-summary">
+          <div class="summary-badge">
+            <span class="badge-point" id="badge-point-a">Point A</span>
+            <span class="badge-arrow">➔</span>
+            <span class="badge-point" id="badge-point-b">Point B</span>
+          </div>
+        </div>
+
+        <div class="result-details">
+          <div class="detail-row">
+            <span class="detail-key">Origin Zone & Landmark:</span>
+            <span class="detail-val" id="detail-point-a">—</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Destination Zone & Landmark:</span>
+            <span class="detail-val" id="detail-point-b">—</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Trip Distance (Computed):</span>
+            <span class="detail-val" id="detail-distance">—</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Passenger Classification:</span>
+            <span class="detail-val" id="detail-passenger">—</span>
           </div>
         </div>
       </div>
 
-      <!-- Passenger Classification as defined in Research Paper Input (c) -->
-      <label class="passenger-section-label">Passenger Classification (Input Parameter)</label>
-      <div class="passenger-type-container">
-        <div class="passenger-btn-group" role="radiogroup" aria-label="Passenger Classification">
-          <label class="passenger-radio-label active" id="label-regular">
-            <input type="radio" name="passenger-type" value="regular" checked>
-            <span class="radio-title">Regular Passenger</span>
-            <span class="radio-desc">Standard Rate (₱15.00 first 4 km + ₱2.20/succeeding km)</span>
-          </label>
-          <label class="passenger-radio-label" id="label-discounted">
-            <input type="radio" name="passenger-type" value="discounted">
-            <span class="radio-title">Student / Senior Citizen / PWD</span>
-            <span class="radio-desc">20% Statutory Discount (₱12.00 first 4 km + ₱1.76/km)</span>
-          </label>
+      <!-- Research Metadata Section -->
+      <div class="info-section">
+        <h2>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor" stroke="none"/></svg>
+          About This Research Study
+        </h2>
+        <p class="study-item"><strong>Research Title:</strong> Development and Accuracy Assessment of an Automated Web-Based Modern Jeepney Fare Computation System</p>
+        <p class="study-item"><strong>Institution:</strong> Casa Del Niño Montessori School of Ilagan, Inc., Guinatan, City of Ilagan, Isabela</p>
+        <p class="study-item"><strong>Researchers:</strong> Balido, John Ritz A., Lantin, Alexandra S., Lola, Samriti, Narciso, David Troy S.</p>
+        <p class="study-item"><strong>Research Adviser:</strong> Mrs. Juby An Ballesteros Clemente, LPT</p>
+      </div>
+    </div>
+
+    <!-- TAB 2: Law -->
+    <div id="panel-law" class="tab-panel" role="tabpanel" aria-labelledby="tab-law-btn" hidden>
+      <h1>Relevant Transportation Laws & Policies</h1>
+      <p class="subtitle">Official Philippine statutory mandates and LTFRB orders governing modern public utility jeepney (PUJ) fare structures and passenger discounts.</p>
+
+      <div class="route-banner">
+        <span class="banner-tag">LEGAL BASIS</span>
+        <span class="banner-title">Statutory Discount Privileges & Regulatory Orders</span>
+      </div>
+
+      <!-- Fact-Check Buttons Card for Law -->
+      <div class="official-actions-card">
+        <p class="actions-title">Official Government Fact-Checking Portals</p>
+        <p class="actions-desc">Verify statutory provisions, legal gazettes, and LTFRB nationwide fare guidelines on official government portals:</p>
+        <div class="btn-group-actions">
+          <a href="https://www.officialgazette.gov.ph" target="_blank" rel="noopener noreferrer" class="official-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Visit Official Gazette Website</span>
+          </a>
+          <a href="https://ltfrb.gov.ph" target="_blank" rel="noopener noreferrer" class="official-btn official-btn-secondary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Visit Official LTFRB Website</span>
+          </a>
         </div>
       </div>
 
-      <button type="submit" class="calc-btn">Compute Modern Jeepney Fare</button>
-    </form>
-
-    <!-- Computed Output Section -->
-    <div class="result" id="result" aria-live="polite">
-      <p class="result-label">Automated System Computed Fare</p>
-      <p class="result-amount" id="fare-amount">₱24.00</p>
-
-      <div class="zone-trip-summary" id="zone-trip-summary">
-        <div class="summary-badge">
-          <span class="badge-point" id="badge-point-a">Point A</span>
-          <span class="badge-arrow">➔</span>
-          <span class="badge-point" id="badge-point-b">Point B</span>
+      <div class="law-card">
+        <div class="law-card-header">
+          <span class="banner-tag">REPUBLIC ACT NO. 11314</span>
+          <h2 class="law-title">Student Fare Discount Act</h2>
+        </div>
+        <p class="law-desc">Enacted on April 17, 2019, institutionalizing the grant of a statutory twenty percent (20%) discount on domestic public transportation utilities for Filipino students.</p>
+        <div class="law-details">
+          <div class="detail-row">
+            <span class="detail-key">Statutory Discount:</span>
+            <span class="detail-val">20% off approved regular fare</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Coverage:</span>
+            <span class="detail-val">Elementary, secondary, technical-vocational, and undergraduate students</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Validity:</span>
+            <span class="detail-val">Everyday, including weekends, summer breaks, and legal holidays</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Required Credential:</span>
+            <span class="detail-val">Valid school ID or validated current enrollment receipt</span>
+          </div>
+        </div>
+        <div class="law-action-wrap">
+          <a href="https://www.officialgazette.gov.ph/2019/04/17/republic-act-no-11314/" target="_blank" rel="noopener noreferrer" class="law-cite-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Official Gazette Citation: Republic Act No. 11314</span>
+          </a>
         </div>
       </div>
 
-      <div class="result-details">
-        <div class="detail-row">
-          <span class="detail-key">Origin Zone & Landmark:</span>
-          <span class="detail-val" id="detail-point-a">—</span>
+      <div class="law-card">
+        <div class="law-card-header">
+          <span class="banner-tag">REPUBLIC ACT NO. 9994</span>
+          <h2 class="law-title">Expanded Senior Citizens Act of 2010</h2>
         </div>
-        <div class="detail-row">
-          <span class="detail-key">Destination Zone & Landmark:</span>
-          <span class="detail-val" id="detail-point-b">—</span>
+        <p class="law-desc">Grants resident Filipino senior citizens aged sixty (60) years and above a mandatory 20% discount and Value Added Tax (VAT) exemption on public land transportation fares.</p>
+        <div class="law-details">
+          <div class="detail-row">
+            <span class="detail-key">Statutory Discount:</span>
+            <span class="detail-val">20% off approved regular fare</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Eligible Beneficiaries:</span>
+            <span class="detail-val">Filipino citizens aged 60 years old and above</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Required Credential:</span>
+            <span class="detail-val">OSCA Senior Citizen ID or any government-issued ID showing date of birth</span>
+          </div>
         </div>
-        <div class="detail-row">
-          <span class="detail-key">Trip Distance (Computed):</span>
-          <span class="detail-val" id="detail-distance">—</span>
+        <div class="law-action-wrap">
+          <a href="https://www.officialgazette.gov.ph/2010/02/15/republic-act-no-9994/" target="_blank" rel="noopener noreferrer" class="law-cite-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Official Gazette Citation: Republic Act No. 9994</span>
+          </a>
         </div>
-        <div class="detail-row">
-          <span class="detail-key">Passenger Classification:</span>
-          <span class="detail-val" id="detail-passenger">—</span>
+      </div>
+
+      <div class="law-card">
+        <div class="law-card-header">
+          <span class="banner-tag">REPUBLIC ACT NO. 7277 / RA 10754</span>
+          <h2 class="law-title">Magna Carta for Persons with Disability (PWD)</h2>
+        </div>
+        <p class="law-desc">Provides equal rights and privileges for persons with disabilities, mandating at least a 20% fare discount on all public transport services throughout the Philippines.</p>
+        <div class="law-details">
+          <div class="detail-row">
+            <span class="detail-key">Statutory Discount:</span>
+            <span class="detail-val">At least 20% off approved regular fare</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Eligible Beneficiaries:</span>
+            <span class="detail-val">Persons with registered physical, sensory, or mental disabilities</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Required Credential:</span>
+            <span class="detail-val">Valid PWD ID issued by the PDAO, City/Municipal Social Welfare, or NCDA</span>
+          </div>
+        </div>
+        <div class="law-action-wrap">
+          <a href="https://www.officialgazette.gov.ph/2016/03/23/republic-act-no-10754/" target="_blank" rel="noopener noreferrer" class="law-cite-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Official Gazette Citation: Republic Act No. 10754</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="law-card">
+        <div class="law-card-header">
+          <span class="banner-tag">LTFRB MC NO. 2017-024</span>
+          <h2 class="law-title">Continuous Grant of Student Discounts</h2>
+        </div>
+        <p class="law-desc">Reiterates that public utility vehicle operators and drivers must grant the 20% student fare discount daily throughout the entire calendar year.</p>
+        <div class="law-details">
+          <div class="detail-row">
+            <span class="detail-key">Implementation:</span>
+            <span class="detail-val">Effective 7 days a week, including weekends and holidays</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Enforcement:</span>
+            <span class="detail-val">Refusal to grant is a franchise violation subject to fines and CPC penalties</span>
+          </div>
+        </div>
+        <div class="law-action-wrap">
+          <a href="https://ltfrb.gov.ph" target="_blank" rel="noopener noreferrer" class="law-cite-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>LTFRB Official Portal Verification</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="law-card">
+        <div class="law-card-header">
+          <span class="banner-tag">LTFRB TARIFF GUIDELINES</span>
+          <h2 class="law-title">Quarter-Peso Rounding Policy</h2>
+        </div>
+        <p class="law-desc">Specifies the official tariff formula and rounding methodology applied to computed public utility jeepney fares.</p>
+        <div class="law-details">
+          <div class="detail-row">
+            <span class="detail-key">Base Distance:</span>
+            <span class="detail-val">Applies to the first four (4) kilometers traveled</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Succeeding Distance:</span>
+            <span class="detail-val">Calculated per kilometer beyond the first 4 km</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Rounding Standard:</span>
+            <span class="detail-val">Officially rounded off to the nearest 25 centavos (₱0.25)</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Mandatory Display:</span>
+            <span class="detail-val">Official LTFRB Fare Matrix must be conspicuously posted inside the PUJ</span>
+          </div>
+        </div>
+        <div class="law-action-wrap">
+          <a href="https://ltfrb.gov.ph" target="_blank" rel="noopener noreferrer" class="law-cite-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>LTFRB Tariff Orders & Guidelines</span>
+          </a>
         </div>
       </div>
     </div>
 
-    <!-- Research Metadata Section -->
-    <div class="info-section">
-      <h2>
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="16"/><circle cx="12" cy="7.6" r="0.6" fill="currentColor" stroke="none"/></svg>
-        About This Research Study
-      </h2>
-      <p class="study-item"><strong>Research Title:</strong> Development and Accuracy Assessment of an Automated Web-Based Modern Jeepney Fare Computation System</p>
-      <p class="study-item"><strong>Institution:</strong> Casa Del Niño Montessori School of Ilagan, Inc., Guinatan, City of Ilagan, Isabela</p>
-      <p class="study-item"><strong>Researchers:</strong> Balido, John Ritz A., Lantin, Alexandra S., Lola, Samriti, Narciso, David Troy S.</p>
-      <p class="study-item"><strong>Research Adviser:</strong> Mrs. Juby An Ballesteros Clemente, LPT</p>
+    <!-- TAB 3: Copy of LTFRB Matrix -->
+    <div id="panel-matrix" class="tab-panel" role="tabpanel" aria-labelledby="tab-matrix-btn" hidden>
+      <h1>LTFRB Fare Matrix</h1>
+      <p class="subtitle">Complete reference copy of the Aircon Modern and Electric PUJ General Fare Guide issued by the Land Transportation Franchising and Regulatory Board.</p>
+
+      <div class="route-banner">
+        <span class="banner-tag">OFFICIAL MATRIX</span>
+        <span class="banner-title">Aircon Modern & Electric PUJ General Fare Guide</span>
+      </div>
+
+      <!-- Fact-Check Buttons Card for Matrix -->
+      <div class="official-actions-card">
+        <p class="actions-title">Official Document Verification & Source</p>
+        <p class="actions-desc">View the official scanned PDF copy of the LTFRB Fare Matrix or visit the official LTFRB portal to fact-check:</p>
+        <div class="btn-group-actions">
+          <a href="https://drive.google.com/file/d/1xBNN-_KPeCwPeeYd4cAx1UtB2wMbA9NO/view" target="_blank" rel="noopener noreferrer" class="official-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>Open Official LTFRB Matrix Copy</span>
+          </a>
+          <a href="https://ltfrb.gov.ph" target="_blank" rel="noopener noreferrer" class="official-btn official-btn-secondary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Visit Official LTFRB Website</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="matrix-sheet">
+        <div class="matrix-official-banner">
+          <p class="matrix-gov-text">Republic of the Philippines • Department of Transportation</p>
+          <h2 class="matrix-agency-text">LAND TRANSPORTATION FRANCHISING AND REGULATORY BOARD</h2>
+          <p class="matrix-address">East Avenue, Quezon City</p>
+          <div class="matrix-badge-wrap">
+            <span class="summary-badge">Effective Date: September 28, 2026</span>
+          </div>
+        </div>
+
+        <div class="matrix-grid">
+          
+          <!-- Column 1: Kms 1 to 25 -->
+          <div class="matrix-table-wrap">
+            <table class="matrix-table" aria-label="LTFRB Fare Matrix Part 1: Distances 1 to 25 km">
+              <thead>
+                <tr>
+                  <th rowspan="2" class="col-dist">Distance<br>(kms.)</th>
+                  <th colspan="2" class="th-main">OLD FARE RATE</th>
+                  <th colspan="2" class="th-main">NEW FARE RATE</th>
+                </tr>
+                <tr>
+                  <th class="th-sub">Regular</th>
+                  <th class="th-sub">Student /<br>Elderly /<br>PWD</th>
+                  <th class="th-sub">Regular</th>
+                  <th class="th-sub">Student /<br>Elderly /<br>PWD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="col-dist">1</td><td>15.00</td><td>12.00</td><td class="col-new">17.00</td><td class="col-new">13.50</td></tr>
+                <tr><td class="col-dist">2</td><td>15.00</td><td>12.00</td><td class="col-new">17.00</td><td class="col-new">13.50</td></tr>
+                <tr><td class="col-dist">3</td><td>15.00</td><td>12.00</td><td class="col-new">17.00</td><td class="col-new">13.50</td></tr>
+                <tr><td class="col-dist">4</td><td>15.00</td><td>12.00</td><td class="col-new">17.00</td><td class="col-new">13.50</td></tr>
+                <tr><td class="col-dist">5</td><td>17.25</td><td>13.75</td><td class="col-new">19.50</td><td class="col-new">15.50</td></tr>
+                <tr><td class="col-dist">6</td><td>19.50</td><td>15.50</td><td class="col-new">21.75</td><td class="col-new">17.50</td></tr>
+                <tr><td class="col-dist">7</td><td>21.50</td><td>17.25</td><td class="col-new">24.25</td><td class="col-new">19.25</td></tr>
+                <tr><td class="col-dist">8</td><td>23.75</td><td>19.00</td><td class="col-new">26.50</td><td class="col-new">21.25</td></tr>
+                <tr><td class="col-dist">9</td><td>26.00</td><td>20.75</td><td class="col-new">29.00</td><td class="col-new">23.25</td></tr>
+                <tr><td class="col-dist">10</td><td>28.25</td><td>22.50</td><td class="col-new">31.50</td><td class="col-new">25.00</td></tr>
+                <tr><td class="col-dist">11</td><td>30.50</td><td>24.25</td><td class="col-new">33.75</td><td class="col-new">27.00</td></tr>
+                <tr><td class="col-dist">12</td><td>32.50</td><td>26.00</td><td class="col-new">36.25</td><td class="col-new">29.00</td></tr>
+                <tr><td class="col-dist">13</td><td>34.75</td><td>27.75</td><td class="col-new">38.50</td><td class="col-new">31.00</td></tr>
+                <tr><td class="col-dist">14</td><td>37.00</td><td>29.50</td><td class="col-new">41.00</td><td class="col-new">32.75</td></tr>
+                <tr><td class="col-dist">15</td><td>39.25</td><td>31.25</td><td class="col-new">43.50</td><td class="col-new">34.75</td></tr>
+                <tr><td class="col-dist">16</td><td>41.50</td><td>33.00</td><td class="col-new">45.75</td><td class="col-new">36.75</td></tr>
+                <tr><td class="col-dist">17</td><td>43.50</td><td>35.00</td><td class="col-new">48.25</td><td class="col-new">38.50</td></tr>
+                <tr><td class="col-dist">18</td><td>45.75</td><td>36.75</td><td class="col-new">50.50</td><td class="col-new">40.50</td></tr>
+                <tr><td class="col-dist">19</td><td>48.00</td><td>38.50</td><td class="col-new">53.00</td><td class="col-new">42.50</td></tr>
+                <tr><td class="col-dist">20</td><td>50.25</td><td>40.25</td><td class="col-new">55.50</td><td class="col-new">44.25</td></tr>
+                <tr><td class="col-dist">21</td><td>52.50</td><td>42.00</td><td class="col-new">57.75</td><td class="col-new">46.25</td></tr>
+                <tr><td class="col-dist">22</td><td>54.50</td><td>43.75</td><td class="col-new">60.25</td><td class="col-new">48.25</td></tr>
+                <tr><td class="col-dist">23</td><td>56.75</td><td>45.50</td><td class="col-new">62.50</td><td class="col-new">50.00</td></tr>
+                <tr><td class="col-dist">24</td><td>59.00</td><td>47.25</td><td class="col-new">65.00</td><td class="col-new">52.00</td></tr>
+                <tr><td class="col-dist">25</td><td>61.25</td><td>49.00</td><td class="col-new">67.50</td><td class="col-new">54.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Column 2: Kms 26 to 50 -->
+          <div class="matrix-table-wrap">
+            <table class="matrix-table" aria-label="LTFRB Fare Matrix Part 2: Distances 26 to 50 km">
+              <thead>
+                <tr>
+                  <th rowspan="2" class="col-dist">Distance<br>(kms.)</th>
+                  <th colspan="2" class="th-main">OLD FARE RATE</th>
+                  <th colspan="2" class="th-main">NEW FARE RATE</th>
+                </tr>
+                <tr>
+                  <th class="th-sub">Regular</th>
+                  <th class="th-sub">Student /<br>Elderly /<br>PWD</th>
+                  <th class="th-sub">Regular</th>
+                  <th class="th-sub">Student /<br>Elderly /<br>PWD</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td class="col-dist">26</td><td>63.50</td><td>50.75</td><td class="col-new">69.75</td><td class="col-new">55.75</td></tr>
+                <tr><td class="col-dist">27</td><td>65.50</td><td>52.50</td><td class="col-new">72.25</td><td class="col-new">57.75</td></tr>
+                <tr><td class="col-dist">28</td><td>67.75</td><td>54.25</td><td class="col-new">74.50</td><td class="col-new">59.75</td></tr>
+                <tr><td class="col-dist">29</td><td>70.00</td><td>56.00</td><td class="col-new">77.00</td><td class="col-new">61.50</td></tr>
+                <tr><td class="col-dist">30</td><td>72.25</td><td>57.75</td><td class="col-new">79.50</td><td class="col-new">63.50</td></tr>
+                <tr><td class="col-dist">31</td><td>74.50</td><td>59.50</td><td class="col-new">81.75</td><td class="col-new">65.50</td></tr>
+                <tr><td class="col-dist">32</td><td>76.50</td><td>61.25</td><td class="col-new">84.25</td><td class="col-new">67.25</td></tr>
+                <tr><td class="col-dist">33</td><td>78.75</td><td>63.00</td><td class="col-new">86.50</td><td class="col-new">69.25</td></tr>
+                <tr><td class="col-dist">34</td><td>81.00</td><td>64.75</td><td class="col-new">89.00</td><td class="col-new">71.25</td></tr>
+                <tr><td class="col-dist">35</td><td>83.25</td><td>66.50</td><td class="col-new">91.50</td><td class="col-new">73.00</td></tr>
+                <tr><td class="col-dist">36</td><td>85.50</td><td>68.25</td><td class="col-new">93.75</td><td class="col-new">75.00</td></tr>
+                <tr><td class="col-dist">37</td><td>87.50</td><td>70.00</td><td class="col-new">96.25</td><td class="col-new">77.00</td></tr>
+                <tr><td class="col-dist">38</td><td>89.75</td><td>71.75</td><td class="col-new">98.50</td><td class="col-new">79.00</td></tr>
+                <tr><td class="col-dist">39</td><td>92.00</td><td>73.50</td><td class="col-new">101.00</td><td class="col-new">80.75</td></tr>
+                <tr><td class="col-dist">40</td><td>94.25</td><td>75.25</td><td class="col-new">103.50</td><td class="col-new">82.75</td></tr>
+                <tr><td class="col-dist">41</td><td>96.50</td><td>77.00</td><td class="col-new">105.75</td><td class="col-new">84.75</td></tr>
+                <tr><td class="col-dist">42</td><td>98.50</td><td>79.00</td><td class="col-new">108.25</td><td class="col-new">86.50</td></tr>
+                <tr><td class="col-dist">43</td><td>100.75</td><td>80.75</td><td class="col-new">110.50</td><td class="col-new">88.50</td></tr>
+                <tr><td class="col-dist">44</td><td>103.00</td><td>82.50</td><td class="col-new">113.00</td><td class="col-new">90.50</td></tr>
+                <tr><td class="col-dist">45</td><td>105.25</td><td>84.25</td><td class="col-new">115.50</td><td class="col-new">92.25</td></tr>
+                <tr><td class="col-dist">46</td><td>107.50</td><td>86.00</td><td class="col-new">117.75</td><td class="col-new">94.25</td></tr>
+                <tr><td class="col-dist">47</td><td>109.50</td><td>87.75</td><td class="col-new">120.25</td><td class="col-new">96.25</td></tr>
+                <tr><td class="col-dist">48</td><td>111.75</td><td>89.50</td><td class="col-new">122.50</td><td class="col-new">98.00</td></tr>
+                <tr><td class="col-dist">49</td><td>114.00</td><td>91.25</td><td class="col-new">125.00</td><td class="col-new">100.00</td></tr>
+                <tr><td class="col-dist">50</td><td>116.25</td><td>93.00</td><td class="col-new">127.50</td><td class="col-new">102.00</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+        <div class="result-details matrix-notes">
+          <div class="detail-row">
+            <span class="detail-key">Computation Method:</span>
+            <span class="detail-val">Official Add-on Method</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Regular Base Fare (First 4 km):</span>
+            <span class="detail-val">₱17.00</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Regular Succeeding Rate:</span>
+            <span class="detail-val">+₱2.40 per succeeding kilometer</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Student / Elderly / PWD Base Fare (First 4 km):</span>
+            <span class="detail-val">₱13.60</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Student / Elderly / PWD Succeeding Rate:</span>
+            <span class="detail-val">+₱1.92 per succeeding kilometer</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Statutory Discount Policy:</span>
+            <span class="detail-val">20% Discount Everyday (MC 2017-024)</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Rounding Standard:</span>
+            <span class="detail-val">Rounded off to nearest 25 centavos (₱0.25)</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Official PDF Document Copy:</span>
+            <span class="detail-val"><a href="https://drive.google.com/file/d/1xBNN-_KPeCwPeeYd4cAx1UtB2wMbA9NO/view" target="_blank" rel="noopener noreferrer" class="table-link">Google Drive Scanned Matrix PDF</a></span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">LTFRB Public Portal / 24/7 Hotline:</span>
+            <span class="detail-val"><a href="https://ltfrb.gov.ph" target="_blank" rel="noopener noreferrer" class="table-link">www.ltfrb.gov.ph</a> • Hotline 1342</span>
+          </div>
+        </div>
+      </div>
     </div>
+
   </main>
 
 </div>
