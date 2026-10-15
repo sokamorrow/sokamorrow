@@ -2,103 +2,102 @@
   "use strict";
 
   // Official LTFRB Landmarks and Distance Database (Centro - Alibagu Route)
-  // Calibrated per official LTFRB Aircon Modern & Electric PUJ General Fare Guide:
-  // Base Fare (First 4 km): ₱17.00 Regular / ₱13.50 Discounted (₱13.60 unrounded base)
-  // Succeeding km: +₱2.40/km Regular / +₱1.92/km Discounted (Quarter-peso rounded)
+  // Updated per LTFRB Order dated October 03, 2023 (Effective October 08, 2023):
+  // Base Fare (First 4 km): ₱15.00 Regular / ₱12.00 Discounted
+  // Succeeding km: +₱2.20/km Regular / +₱1.76/km Discounted (Quarter-peso rounded)
   const LTFRB_LANDMARKS = [
     {
       id: 0,
       name: "Rizal Park",
       zone: "Centro",
       distanceKm: 0.00,
-      officialFare: { regular: 17.00, discount: 13.50 }
+      officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 1,
       name: "Ilagan City Hall",
       zone: "Centro",
       distanceKm: 0.64,
-      officialFare: { regular: 17.00, discount: 13.50 }
+      officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 2,
       name: "Paguirigan Memorial Park",
       zone: "Centro",
       distanceKm: 0.95,
-      officialFare: { regular: 17.00, discount: 13.50 }
+      officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 3,
       name: "Casa del Niño Montessori School of Ilagan",
       zone: "Guinatan",
       distanceKm: 1.90,
-      officialFare: { regular: 17.00, discount: 13.50 }
+      officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 4,
       name: "Brgy. Guinatan Covered Court",
       zone: "Guinatan",
       distanceKm: 2.49,
-      officialFare: { regular: 17.00, discount: 13.50 }
+      officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 5,
       name: "Puregold Ilagan Isabela",
       zone: "Osmeña",
       distanceKm: 3.30,
-      officialFare: { regular: 17.00, discount: 13.50 }
+      officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 6,
       name: "Robinsons Supermarket Ilagan",
       zone: "Osmeña",
       distanceKm: 3.95,
-      officialFare: { regular: 17.00, discount: 13.50 }
+      officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 7,
       name: "Isabela Doctor's General Hospital (IDGH)",
       zone: "Calamagui 1st",
       distanceKm: 5.30,
-      officialFare: { regular: 20.00, discount: 16.00 }
+      officialFare: { regular: 17.75, discount: 14.25 }
     },
     {
       id: 8,
       name: "Hotel Mills and Rain",
       zone: "Calamagui 1st",
       distanceKm: 6.22,
-      officialFare: { regular: 22.25, discount: 17.75 }
+      officialFare: { regular: 20.00, discount: 16.00 }
     },
     {
       id: 9,
       name: "Queen Isabela Park",
       zone: "Calamagui 2nd",
       distanceKm: 6.95,
-      officialFare: { regular: 24.00, discount: 19.25 }
+      officialFare: { regular: 21.50, discount: 17.25 }
     },
     {
       id: 10,
       name: "Philippine Statistics Authority - Isabela Provincial Office",
       zone: "Baligatan",
       distanceKm: 7.31,
-      officialFare: { regular: 25.00, discount: 20.00 }
+      officialFare: { regular: 22.25, discount: 17.75 }
     },
     {
       id: 11,
       name: "Northstar Mall",
       zone: "Alibagu",
       distanceKm: 8.10,
-      officialFare: { regular: 26.75, discount: 21.50 }
+      officialFare: { regular: 24.00, discount: 19.25 }
     }
   ];
 
   // Mathematical Parameters from Official LTFRB Modern PUJ (Air-Con) Matrix
   const BASE_DISTANCE_KM = 4.0;
-  const BASE_REGULAR_FARE = 17.00;
-  const BASE_DISCOUNT_FARE = 13.60;
-  const BASE_DISCOUNT_FLAT = 13.50;
-  const PER_KM_REGULAR = 2.40;
-  const PER_KM_DISCOUNT = 1.92;
+  const BASE_REGULAR_FARE = 15.00;
+  const BASE_DISCOUNT_FARE = 12.00;
+  const PER_KM_REGULAR = 2.20;
+  const PER_KM_DISCOUNT = 1.76;
 
   const originSelect = document.getElementById("origin");
   const destSelect = document.getElementById("destination");
@@ -143,7 +142,7 @@
     const tripDistance = Math.abs(originPoint.distanceKm - destPoint.distanceKm);
 
     if (tripDistance <= BASE_DISTANCE_KM) {
-      return isDiscounted ? BASE_DISCOUNT_FLAT : BASE_REGULAR_FARE;
+      return isDiscounted ? BASE_DISCOUNT_FARE : BASE_REGULAR_FARE;
     }
 
     const excessKm = tripDistance - BASE_DISTANCE_KM;
