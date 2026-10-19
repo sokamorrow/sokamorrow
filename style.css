@@ -735,3 +735,30 @@ select:focus {
 .matrix-notes {
   margin-top: 14px;
 }
+
+/* Add at the bottom of style.css */
+.cash-advisory-card {
+  margin-top: 14px;
+  background: #fdfaf3;
+  border: 1px solid #faeccb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  text-align: left;
+}
+
+.advisory-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #92620a;
+  margin: 0 0 4px;
+}
+
+.advisory-desc {
+  font-size: 11px;
+  color: #634608;
+  margin: 0;
+  line-height: 1.4;
+}

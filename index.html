@@ -67,26 +67,20 @@
                   <option value="1">Ilagan City Hall (0.64 km mark)</option>
                   <option value="2">Paguirigan Memorial Park (0.95 km mark)</option>
                 </optgroup>
-                <optgroup label="Guinatan Zone">
-                  <option value="3">Casa del Niño Montessori School (1.90 km mark)</option>
+                <optgroup label="Guinatan">
+                  <option value="3">Casa del Niño Montessori School of Ilagan (1.90 km mark)</option>
                   <option value="4">Brgy. Guinatan Covered Court (2.49 km mark)</option>
                 </optgroup>
-                <optgroup label="Osmeña Zone">
+                <optgroup label="Calamagui 2nd">
                   <option value="5">Puregold Ilagan Isabela (3.30 km mark)</option>
                   <option value="6">Robinsons Supermarket Ilagan (3.95 km mark)</option>
                 </optgroup>
-                <optgroup label="Calamagui 1st Zone">
-                  <option value="7">Isabela Doctor's General Hospital [IDGH] (5.30 km mark)</option>
-                  <option value="8">Hotel Mills and Rain (6.22 km mark)</option>
+                <optgroup label="Baligatan">
+                  <option value="7">Isabela Doctor's General Hospital (IDGH) (5.30 km mark)</option>
                 </optgroup>
-                <optgroup label="Calamagui 2nd Zone">
-                  <option value="9">Queen Isabela Park (6.95 km mark)</option>
-                </optgroup>
-                <optgroup label="Baligatan Zone">
-                  <option value="10">PSA - Isabela Provincial Office (7.31 km mark)</option>
-                </optgroup>
-                <optgroup label="Alibagu Zone">
-                  <option value="11" selected>Northstar Mall (8.10 km mark)</option>
+                <optgroup label="Alibagu">
+                  <option value="8">Queen Isabela Park (6.95 km mark)</option>
+                  <option value="9">Northstar Mall (8.10 km mark)</option>
                 </optgroup>
               </select>
             </div>
@@ -106,26 +100,20 @@
                   <option value="1">Ilagan City Hall (0.64 km mark)</option>
                   <option value="2">Paguirigan Memorial Park (0.95 km mark)</option>
                 </optgroup>
-                <optgroup label="Guinatan Zone">
-                  <option value="3">Casa del Niño Montessori School (1.90 km mark)</option>
+                <optgroup label="Guinatan">
+                  <option value="3">Casa del Niño Montessori School of Ilagan (1.90 km mark)</option>
                   <option value="4">Brgy. Guinatan Covered Court (2.49 km mark)</option>
                 </optgroup>
-                <optgroup label="Osmeña Zone">
+                <optgroup label="Calamagui 2nd">
                   <option value="5">Puregold Ilagan Isabela (3.30 km mark)</option>
                   <option value="6">Robinsons Supermarket Ilagan (3.95 km mark)</option>
                 </optgroup>
-                <optgroup label="Calamagui 1st Zone">
-                  <option value="7">Isabela Doctor's General Hospital [IDGH] (5.30 km mark)</option>
-                  <option value="8">Hotel Mills and Rain (6.22 km mark)</option>
+                <optgroup label="Baligatan">
+                  <option value="7">Isabela Doctor's General Hospital (IDGH) (5.30 km mark)</option>
                 </optgroup>
-                <optgroup label="Calamagui 2nd Zone">
-                  <option value="9">Queen Isabela Park (6.95 km mark)</option>
-                </optgroup>
-                <optgroup label="Baligatan Zone">
-                  <option value="10">PSA - Isabela Provincial Office (7.31 km mark)</option>
-                </optgroup>
-                <optgroup label="Alibagu Zone">
-                  <option value="11" selected>Northstar Mall (8.10 km mark)</option>
+                <optgroup label="Alibagu">
+                  <option value="8">Queen Isabela Park (6.95 km mark)</option>
+                  <option value="9" selected>Northstar Mall (8.10 km mark)</option>
                 </optgroup>
               </select>
             </div>
@@ -183,6 +171,17 @@
             <span class="detail-val" id="detail-passenger">—</span>
           </div>
         </div>
+
+        <!-- NEW: Cash-Handling & Overcharge Advisory Card -->
+        <div class="cash-advisory-card" id="cash-advisory-card">
+          <p class="advisory-title">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            Cash Transaction & Exact Change Advisory:
+          </p>
+          <p class="advisory-desc" id="advisory-text">
+            Under <strong>Republic Act No. 10909 (No Shortchanging Act)</strong>, service providers must give exact change. If 25¢ coins are unavailable, customary cash rounding rounds down to protect consumers. Charging whole-peso roundups (e.g. ₱20) is unlawful.
+          </p>
+        </div>
       </div>
 
       <!-- Research Metadata Section -->
@@ -201,11 +200,11 @@
     <!-- TAB 2: Law -->
     <div id="panel-law" class="tab-panel" role="tabpanel" aria-labelledby="tab-law-btn" hidden>
       <h1>Relevant Transportation Laws & Policies</h1>
-      <p class="subtitle">Official Philippine statutory mandates and LTFRB orders governing modern public utility jeepney (PUJ) fare structures and passenger discounts.</p>
+      <p class="subtitle">Official Philippine statutory mandates and LTFRB orders governing modern public utility jeepney (PUJ) fare structures, passenger discounts, and consumer rights.</p>
 
       <div class="route-banner">
         <span class="banner-tag">LEGAL BASIS</span>
-        <span class="banner-title">Statutory Discount Privileges & Regulatory Orders</span>
+        <span class="banner-title">Statutory Discount Privileges & Consumer Rights</span>
       </div>
 
       <!-- Fact-Check Buttons Card for Law -->
@@ -220,6 +219,35 @@
           <a href="https://ltfrb.gov.ph" target="_blank" rel="noopener noreferrer" class="official-btn official-btn-secondary">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <span>Visit Official LTFRB Website</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- NEW: REPUBLIC ACT NO. 10909 (NO SHORTCHANGING ACT) -->
+      <div class="law-card">
+        <div class="law-card-header">
+          <span class="banner-tag">REPUBLIC ACT NO. 10909</span>
+          <h2 class="law-title">No Shortchanging Act of 2016</h2>
+        </div>
+        <p class="law-desc">Mandates that all businesses and service providers (including public transport) must give exact change to consumers. It explicitly prohibits withholding change or rounding up fares due to a lack of small coins.</p>
+        <div class="law-details">
+          <div class="detail-row">
+            <span class="detail-key">Mandate:</span>
+            <span class="detail-val">Duty to give exact change without waiting to be asked (Sec. 4a)</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Prohibited Excuse:</span>
+            <span class="detail-val">Lack of coins/small bills is NOT an excuse to shortchange (Sec. 4b)</span>
+          </div>
+          <div class="detail-row">
+            <span class="detail-key">Enforcement:</span>
+            <span class="detail-val">Fines from ₱500 to ₱25,000 and suspension of operating permits</span>
+          </div>
+        </div>
+        <div class="law-action-wrap">
+          <a href="https://www.officialgazette.gov.ph/2016/07/21/republic-act-no-10909/" target="_blank" rel="noopener noreferrer" class="law-cite-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span>Official Gazette Citation: Republic Act No. 10909</span>
           </a>
         </div>
       </div>
@@ -242,10 +270,6 @@
           <div class="detail-row">
             <span class="detail-key">Validity:</span>
             <span class="detail-val">Everyday, including weekends, summer breaks, and legal holidays</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-key">Required Credential:</span>
-            <span class="detail-val">Valid school ID or validated current enrollment receipt</span>
           </div>
         </div>
         <div class="law-action-wrap">
@@ -271,10 +295,6 @@
             <span class="detail-key">Eligible Beneficiaries:</span>
             <span class="detail-val">Filipino citizens aged 60 years old and above</span>
           </div>
-          <div class="detail-row">
-            <span class="detail-key">Required Credential:</span>
-            <span class="detail-val">OSCA Senior Citizen ID or any government-issued ID showing date of birth</span>
-          </div>
         </div>
         <div class="law-action-wrap">
           <a href="https://www.officialgazette.gov.ph/2010/02/15/republic-act-no-9994/" target="_blank" rel="noopener noreferrer" class="law-cite-link">
@@ -299,10 +319,6 @@
             <span class="detail-key">Eligible Beneficiaries:</span>
             <span class="detail-val">Persons with registered physical, sensory, or mental disabilities</span>
           </div>
-          <div class="detail-row">
-            <span class="detail-key">Required Credential:</span>
-            <span class="detail-val">Valid PWD ID issued by the PDAO, City/Municipal Social Welfare, or NCDA</span>
-          </div>
         </div>
         <div class="law-action-wrap">
           <a href="https://www.officialgazette.gov.ph/2016/03/23/republic-act-no-10754/" target="_blank" rel="noopener noreferrer" class="law-cite-link">
@@ -323,10 +339,6 @@
             <span class="detail-key">Implementation:</span>
             <span class="detail-val">Effective 7 days a week, including weekends and holidays</span>
           </div>
-          <div class="detail-row">
-            <span class="detail-key">Enforcement:</span>
-            <span class="detail-val">Refusal to grant is a franchise violation subject to fines and CPC penalties</span>
-          </div>
         </div>
         <div class="law-action-wrap">
           <a href="https://ltfrb.gov.ph" target="_blank" rel="noopener noreferrer" class="law-cite-link">
@@ -343,14 +355,6 @@
         </div>
         <p class="law-desc">Specifies the official tariff formula and rounding methodology applied to computed public utility jeepney fares.</p>
         <div class="law-details">
-          <div class="detail-row">
-            <span class="detail-key">Base Distance:</span>
-            <span class="detail-val">Applies to the first four (4) kilometers traveled</span>
-          </div>
-          <div class="detail-row">
-            <span class="detail-key">Succeeding Distance:</span>
-            <span class="detail-val">Calculated per kilometer beyond the first 4 km</span>
-          </div>
           <div class="detail-row">
             <span class="detail-key">Rounding Standard:</span>
             <span class="detail-val">Officially rounded off to the nearest 25 centavos (₱0.25)</span>

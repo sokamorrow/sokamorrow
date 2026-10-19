@@ -2,28 +2,26 @@
   "use strict";
 
   // Official LTFRB Landmarks and Distance Database (Centro - Alibagu Route)
-  // Updated per LTFRB Order dated October 03, 2023 (Effective October 08, 2023):
-  // Base Fare (First 4 km): ₱15.00 Regular / ₱12.00 Discounted
-  // Succeeding km: +₱2.20/km Regular / +₱1.76/km Discounted (Quarter-peso rounded)
+  // Calibrated per official LTFRB Air-Conditioned Modern PUJ Tariff
   const LTFRB_LANDMARKS = [
     {
       id: 0,
       name: "Rizal Park",
-      zone: "Centro",
+      zone: "Centro Zone",
       distanceKm: 0.00,
       officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 1,
       name: "Ilagan City Hall",
-      zone: "Centro",
+      zone: "Centro Zone",
       distanceKm: 0.64,
       officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 2,
       name: "Paguirigan Memorial Park",
-      zone: "Centro",
+      zone: "Centro Zone",
       distanceKm: 0.95,
       officialFare: { regular: 15.00, discount: 12.00 }
     },
@@ -44,47 +42,33 @@
     {
       id: 5,
       name: "Puregold Ilagan Isabela",
-      zone: "Osmeña",
+      zone: "Calamagui 2nd",
       distanceKm: 3.30,
       officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 6,
       name: "Robinsons Supermarket Ilagan",
-      zone: "Osmeña",
+      zone: "Calamagui 2nd",
       distanceKm: 3.95,
       officialFare: { regular: 15.00, discount: 12.00 }
     },
     {
       id: 7,
       name: "Isabela Doctor's General Hospital (IDGH)",
-      zone: "Calamagui 1st",
+      zone: "Baligatan",
       distanceKm: 5.30,
       officialFare: { regular: 17.75, discount: 14.25 }
     },
     {
       id: 8,
-      name: "Hotel Mills and Rain",
-      zone: "Calamagui 1st",
-      distanceKm: 6.22,
-      officialFare: { regular: 20.00, discount: 16.00 }
-    },
-    {
-      id: 9,
       name: "Queen Isabela Park",
-      zone: "Calamagui 2nd",
+      zone: "Alibagu",
       distanceKm: 6.95,
       officialFare: { regular: 21.50, discount: 17.25 }
     },
     {
-      id: 10,
-      name: "Philippine Statistics Authority - Isabela Provincial Office",
-      zone: "Baligatan",
-      distanceKm: 7.31,
-      officialFare: { regular: 22.25, discount: 17.75 }
-    },
-    {
-      id: 11,
+      id: 9,
       name: "Northstar Mall",
       zone: "Alibagu",
       distanceKm: 8.10,
@@ -107,6 +91,7 @@
   const swapBtn = document.getElementById("swap-btn");
   const navTabs = document.querySelectorAll(".nav-tab");
   const tabPanels = document.querySelectorAll(".tab-panel");
+  const advisoryText = document.getElementById("advisory-text");
 
   // Rounds to the nearest 0.25 (standard LTFRB quarter-peso rounding rule)
   function roundToQuarter(value) {
@@ -196,6 +181,19 @@
 
     document.getElementById("detail-distance").textContent = distanceDetail;
     document.getElementById("detail-passenger").textContent = passengerLabel;
+
+    // Dynamic RA 10909 Cash Advisory Guidance
+    if (advisoryText) {
+      const fraction = computedFare % 1;
+      const baseFloor = Math.floor(computedFare);
+      if (fraction === 0.25) {
+        advisoryText.innerHTML = `Legal LTFRB rate is <strong>₱${computedFare.toFixed(2)}</strong>. If no 25¢ coins are available in cash, customary payment rounds down to <strong>₱${baseFloor}.00</strong> under <strong>RA 10909 (No Shortchanging Act)</strong>. Demanding ₱${baseFloor + 1} or more is unlawful.`;
+      } else if (fraction === 0.75) {
+        advisoryText.innerHTML = `Legal LTFRB rate is <strong>₱${computedFare.toFixed(2)}</strong>. In physical cash without 25¢ coins, customary payment rounds to <strong>₱${baseFloor + 1}.00</strong>. Demanding higher arbitrary fares is unlawful.`;
+      } else {
+        advisoryText.innerHTML = `Under <strong>Republic Act No. 10909</strong>, exact change is a consumer right. Drivers must not round up fares arbitrarily.`;
+      }
+    }
   }
 
   function swapLocations() {
@@ -205,7 +203,6 @@
     computeAndRender();
   }
 
-  // Navigation Tab Switching Functionality
   function switchTab(targetPanelId) {
     navTabs.forEach(function (tab) {
       const isTarget = tab.getAttribute("aria-controls") === targetPanelId;
