@@ -9,79 +9,80 @@
       name: "Rizal Park",
       zone: "Centro Zone",
       distanceKm: 0.00,
-      officialFare: { regular: 15.00, discount: 12.00 }
+      officialFare: { regular: 17.00, discount: 13.50 }
     },
     {
       id: 1,
       name: "Ilagan City Hall",
       zone: "Centro Zone",
       distanceKm: 0.64,
-      officialFare: { regular: 15.00, discount: 12.00 }
+      officialFare: { regular: 17.00, discount: 13.50 }
     },
     {
       id: 2,
       name: "Paguirigan Memorial Park",
       zone: "Centro Zone",
       distanceKm: 0.95,
-      officialFare: { regular: 15.00, discount: 12.00 }
+      officialFare: { regular: 17.00, discount: 13.50 }
     },
     {
       id: 3,
       name: "Casa del Niño Montessori School of Ilagan",
       zone: "Guinatan",
       distanceKm: 1.90,
-      officialFare: { regular: 15.00, discount: 12.00 }
+      officialFare: { regular: 17.00, discount: 13.50 }
     },
     {
       id: 4,
       name: "Brgy. Guinatan Covered Court",
       zone: "Guinatan",
       distanceKm: 2.49,
-      officialFare: { regular: 15.00, discount: 12.00 }
+      officialFare: { regular: 17.00, discount: 13.50 }
     },
     {
       id: 5,
       name: "Puregold Ilagan Isabela",
       zone: "Calamagui 2nd",
       distanceKm: 3.30,
-      officialFare: { regular: 15.00, discount: 12.00 }
+      officialFare: { regular: 17.00, discount: 13.50 }
     },
     {
       id: 6,
       name: "Robinsons Supermarket Ilagan",
       zone: "Calamagui 2nd",
       distanceKm: 3.95,
-      officialFare: { regular: 15.00, discount: 12.00 }
+      officialFare: { regular: 17.00, discount: 13.50 }
     },
     {
       id: 7,
       name: "Isabela Doctor's General Hospital (IDGH)",
       zone: "Baligatan",
       distanceKm: 5.30,
-      officialFare: { regular: 17.75, discount: 14.25 }
+      officialFare: { regular: 20.00, discount: 16.00 }
     },
     {
       id: 8,
       name: "Queen Isabela Park",
       zone: "Alibagu",
       distanceKm: 6.95,
-      officialFare: { regular: 21.50, discount: 17.25 }
+      officialFare: { regular: 24.00, discount: 19.25 }
     },
     {
       id: 9,
       name: "Northstar Mall",
       zone: "Alibagu",
       distanceKm: 8.10,
-      officialFare: { regular: 24.00, discount: 19.25 }
+      officialFare: { regular: 26.75, discount: 21.50 }
     }
   ];
 
   // Mathematical Parameters from Official LTFRB Modern PUJ (Air-Con) Matrix
   const BASE_DISTANCE_KM = 4.0;
-  const BASE_REGULAR_FARE = 15.00;
-  const BASE_DISCOUNT_FARE = 12.00;
-  const PER_KM_REGULAR = 2.20;
-  const PER_KM_DISCOUNT = 1.76;
+  const BASE_REGULAR_FARE = 17.00;
+  const BASE_DISCOUNT_FARE = 13.50;
+  const DISCOUNT_FORMULA_BASE = 13.60;
+  const PER_KM_REGULAR = 2.40;
+  const PER_KM_DISCOUNT = 1.92;
 
   const originSelect = document.getElementById("origin");
   const destSelect = document.getElementById("destination");
@@ -132,7 +133,7 @@
 
     const excessKm = tripDistance - BASE_DISTANCE_KM;
     if (isDiscounted) {
-      return roundToQuarter(BASE_DISCOUNT_FARE + (excessKm * PER_KM_DISCOUNT));
+      return roundToQuarter(DISCOUNT_FORMULA_BASE + (excessKm * PER_KM_DISCOUNT));
     } else {
       return roundToQuarter(BASE_REGULAR_FARE + (excessKm * PER_KM_REGULAR));
     }
